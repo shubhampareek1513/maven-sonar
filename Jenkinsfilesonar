@@ -1,10 +1,7 @@
-pipeline {
-
+pipeline{
 agent any 
-
-stages {
-
-  stage('scm checkout')
+stages{
+stage('scm checkout')
 {
 
 steps{
@@ -15,9 +12,9 @@ steps{
 
 stage('sonar and maven package')
 {
-steps {
+steps{
 
-withSonarQubeEnv('mysonar') {
+withSonarQubeEnv('sonar')  {
     withMaven(jdk: 'localjdk', maven: 'local-mvn') {
       sh 'clean mvn install sonar:sonar'
 }
