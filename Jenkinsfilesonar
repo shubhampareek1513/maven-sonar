@@ -22,7 +22,7 @@ withSonarQubeEnv('sonar'){
 }
 }
 }
-stage(deploy to tomcat){
+stage('deploy to tomcat'){
 
 steps{
 
