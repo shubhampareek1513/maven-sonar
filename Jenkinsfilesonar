@@ -1,25 +1,12 @@
 pipeline{
 agent any 
 stages{
-stage('scm checkout')
-{
+stage(deploy to tomcat){
 
 steps{
-           git branch: 'master', url: 'https://github.com/shubhampareek1513/maven-sonar.git'
 
-}
-}
-
-stage('sonar and maven package')
-{
-steps{
-
-withSonarQubeEnv('sonar'){
-    withMaven(maven: 'local-mvn') {
-      sh 'mvn install sonar:sonar'
-}
-}
-}
-}
+sshagent(['cicd']) {
+    sh 'scp -o StrictHostKeyChecking=no */tagget/*.war  ec2-user@172.31.40.48:usr/share/tomcat/webapp'
+}}}
 }
 }
