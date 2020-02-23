@@ -1,3 +1,4 @@
+
 pipeline{
 agent any 
 stages{
@@ -21,5 +22,13 @@ withSonarQubeEnv('sonar'){
 }
 }
 }
+stage(deploy to tomcat){
+
+steps{
+
+sshagent(['cicd']) {
+    sh 'scp -o StrictHostKeyChecking=no */tagget/*.war  ec2-user@172.31.40.48:usr/share/tomcat/webapp'
+}}}
+
 }
 }
