@@ -6,7 +6,7 @@ stage('deploy to tomcat'){
 steps{
 
 sshagent(['cicd']) {
-    sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/solarpipelinesecond-job/target/*.jar  ec2-user@172.31.40.48:usr/share/tomcat/webapp'
+    sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/solarpipelinesecond-job/target/*.jar  ec2-user@172.31.40.48:/usr/share/tomcat/webapps/'
 }}}
 }
 }
